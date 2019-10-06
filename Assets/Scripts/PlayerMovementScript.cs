@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerMovementScript : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
 
@@ -12,18 +12,22 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        
-        if (isMovingRight) {
-            controller.move(speed * Time.deltaTime, isMovingRight);
-        } else {
-            controller.move(-speed * Time.deltaTime, isMovingRight);
+    {
+        if (controller.running) {
+            if (isMovingRight) {
+                controller.move(speed * Time.deltaTime, isMovingRight);
+            } else {
+                controller.move(-speed * Time.deltaTime, isMovingRight);
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            controller.toggleRunning(!controller.running);
 
         if (Input.GetKeyDown(KeyCode.Space))
             isMovingRight = !isMovingRight;

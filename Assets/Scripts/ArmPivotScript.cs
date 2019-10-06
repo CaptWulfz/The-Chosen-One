@@ -40,9 +40,9 @@ public class ArmPivotScript : MonoBehaviour
         playerDifference.Normalize();
 
         if (playerDifference.x >= 0)
-            transform.localPosition = new Vector3(-0.09f, transform.localPosition.y, transform.localPosition.z);
+            transform.localPosition = new Vector3(0.38f, transform.localPosition.y, transform.localPosition.z);
         else if (playerDifference.x < 0)
-            transform.localPosition = new Vector3(0.09f, transform.localPosition.y, transform.localPosition.z);
+            transform.localPosition = new Vector3(-0.38f, transform.localPosition.y, transform.localPosition.z);
 
 
     }

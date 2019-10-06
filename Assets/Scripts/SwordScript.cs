@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SwordScript : MonoBehaviour
 {
-
+    private float _damage = 20.0f;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -17,7 +17,9 @@ public class SwordScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        //Debug.Log(collision.name);
+    public float damage {
+        get {
+            return _damage;
+        }
     }
 }

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool _running = false;
     private bool _lunging = false;
     private bool _movingRight = true;
-    private float launchSpeed = 15.0f;
+    private float launchSpeed = 20.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
         }
         _running = true;
         _movingRight = isMovingRight;
+        legsAnimator.SetBool("running", _running);
+    }
+
+    public void toggleRunning(bool isRunning) {
+        _running = isRunning;
         legsAnimator.SetBool("running", _running);
     }
 

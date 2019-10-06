@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - Enemy-Grounded
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -50,4 +52,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 992374033
+    locked: 0
+  - name: UI
+    uniqueID: 834409291
     locked: 0

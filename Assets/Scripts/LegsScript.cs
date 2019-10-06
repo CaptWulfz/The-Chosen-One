@@ -17,9 +17,20 @@ public class LegsScript : MonoBehaviour
     {
         SpriteRenderer renderer = this.gameObject.GetComponent<SpriteRenderer>();
 
-        if (controller.movingRight)
-            renderer.flipX = false;
-        else
-            renderer.flipX = true;
+        if (controller.running) {
+            if (controller.movingRight)
+                renderer.flipX = false;
+            else
+                renderer.flipX = true;
+        } else {
+            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            
+            difference.Normalize();
+
+            if (difference.x >= 0)
+                renderer.flipX = false;
+            else if (difference.x < 0)
+                renderer.flipX = true;
+        }
     }
 }
