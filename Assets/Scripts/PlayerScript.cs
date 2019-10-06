@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private PlayerController controller;
 
-    private bool isMovingRight = false;
-    private bool lunging = false;
-    private float speed = 2.5f;
-    private float launchSpeed = 15.0f; 
+    private bool isMovingRight = true;
+    private float speed = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,21 +17,16 @@ public class PlayerScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Vector3 move= new Vector3(transform.position.x, transform.position.y, transform.position.y); ;
-        /*
+    {   
+        
         if (isMovingRight) {
-            move.x += speed * Time.deltaTime;
+            controller.move(speed * Time.deltaTime, isMovingRight);
         } else {
-            move.x -= speed * Time.deltaTime;
+            controller.move(-speed * Time.deltaTime, isMovingRight);
         }
-        */
-        transform.position = move;
 
-        if (Input.GetKeyUp(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space))
             isMovingRight = !isMovingRight;
-        }
-
         
     }
 
@@ -43,31 +35,8 @@ public class PlayerScript : MonoBehaviour
         mouseDir.z = 0.0f;
         mouseDir.Normalize();
 
-        faceMouse();
-
-        if (Input.GetMouseButtonDown(0)) {
-            animator.SetBool("lunging", true);
-            rb.velocity = new Vector2(mouseDir.x * launchSpeed, mouseDir.y * launchSpeed);
-            lunging = true;
-        }
-    }
-
-    private void faceMouse() {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        SpriteRenderer renderer = this.gameObject.GetComponent<SpriteRenderer>();
-
-        difference.Normalize();
-
-        if (difference.x >= 0)
-            renderer.flipX = false;
-        else if (difference.x < 0)
-            renderer.flipX = true;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (lunging && collision.tag == "Floor") {
-            lunging = false;
-            animator.SetBool("lunging", false);
+        if (Input.GetMouseButtonDown(0) && !controller.lunging && mouseDir.y > 0.1f) {
+            controller.lunge(mouseDir);
         }
     }
 }
