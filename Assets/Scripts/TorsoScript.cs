@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TorsoScript : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +27,12 @@ public class TorsoScript : MonoBehaviour
 
         difference.Normalize();
 
-        if (difference.x >= 0)
+        if (difference.x >= 0) {
             renderer.flipX = false;
-        else if (difference.x < 0)
+            transform.localPosition = new Vector3(0.0f, transform.localPosition.y, transform.localPosition.z);
+        } else if (difference.x < 0) {
             renderer.flipX = true;
+            transform.localPosition = new Vector3(0.2f, transform.localPosition.y, transform.localPosition.z);
+        }
     }
 }

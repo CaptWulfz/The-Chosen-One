@@ -7,7 +7,7 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private PlayerController controller;
 
     private bool isMovingRight = true;
-    private float speed = 5f;
+    private float speed = 7.0f;
 
     // Start is called before the first frame update
     void Start()

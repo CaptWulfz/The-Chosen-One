@@ -15,6 +15,10 @@ public class LegsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate() {
         SpriteRenderer renderer = this.gameObject.GetComponent<SpriteRenderer>();
 
         if (controller.running) {
@@ -24,7 +28,7 @@ public class LegsScript : MonoBehaviour
                 renderer.flipX = true;
         } else {
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            
+
             difference.Normalize();
 
             if (difference.x >= 0)
